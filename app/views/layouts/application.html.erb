@@ -8,7 +8,25 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+    <div class="content">
+      <div class="page-header">
+        <h1>Hoofprinter <small>The carbon cowculator</small></h1>
+      </div>
+      <div class="row">
+        <div class="span10">
+          <%= yield %>
+
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <%= image_tag 'PoweredByAMEE.png' %>
+    </footer>
+
+  </div>
+
 
 </body>
 </html>
