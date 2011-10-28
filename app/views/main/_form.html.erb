@@ -1,0 +1,29 @@
+<%= form_tag({:action => 'index'}, {:remote => true, :id => 'form'}) do %>
+  <table>
+    <%@calculation.inputs.visible.each do |input|%>
+      <tr>
+        <% if input.drop_down? %>
+          <td><%=label :form,input.label,input.name%></td>
+          <td>
+            <%= select_tag "form[#{input.label}]",
+              options_for_select(input.options_for_select,input.set? ? input.value : nil),:disabled=>input.disabled?%>
+          </td>
+        <%else%>
+          <td><%=label :form,input.label,input.name%></td>
+          <td><%= text_field :form, input.label, "size" => 20, :value => input.value,:disabled=>input.disabled? %></td>
+        <%end%>
+        <td><% if input.compulsory? %><span class="compulsory-input">*</span> <%end%></td>
+      </tr>
+    <%end%>
+    <%@calculation.outputs.visible.each do |result|%>
+      <tr>
+        <td><%=label :form,result.label,result.name%></td>
+        <td><%= result %></td>
+        <td></td>
+      </tr>
+    <%end%>
+  </table>
+  
+  <%= submit_tag 'Cowculate!' %>
+  
+<%end%>
